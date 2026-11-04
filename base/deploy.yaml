@@ -16,6 +16,6 @@ spec:
         app: gobg
     spec:
       containers:
-      - image: christianh814/gobg:latest
+      - image: ral7clj/gobg:latest
         name: gobg
         resources: {}
