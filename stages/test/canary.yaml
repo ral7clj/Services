@@ -1,0 +1,39 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: gobg
+  namespace: gobg-test
+spec:
+  
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gobg
+ 
+  interval: 15s
+  
+  threshold: 5
+  
+  service:
+    port: 8080
+    targetPort: 8080
+    gateways:
+      - mesh 
+  
+  analysis:
+    interval: 15s
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 10
+    
+    metrics:
+      - name: request-success-rate
+        
+        thresholdRange:
+          min: 99
+        interval: 1m
+      - name: request-duration
+        
+        thresholdRange:
+          max: 500
+        interval: 1m
