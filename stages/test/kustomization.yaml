@@ -6,6 +6,7 @@ namespace: gobg-test
 resources:
 - ns.yaml
 - ../../base
+- canary.yaml
 
 patches:
   - target:
