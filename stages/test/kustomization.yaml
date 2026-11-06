@@ -8,34 +8,18 @@ resources:
   - ../../base
   - gateway.yaml
 
-patches:
+patchesJson6902:
+  
   - target:
+      version: v1
       kind: Service
       name: gobg
-    patch: |-
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: gobg
-      spec:
-        ports:
-          - $patch: replace
-            name: http
-            port: 8080
-            targetPort: 8080
-            nodePort: 30081
-            protocol: TCP
+    path: patch-service.yaml
 
+  
   - target:
+      group: flagger.app
+      version: v1beta1
       kind: Canary
       name: gobg
-    patch: |-
-      - op: replace
-        path: /spec/service/gateways
-        value:
-          - gobg-gateway
-          - mesh
-      - op: replace
-        path: /spec/service/hosts
-        value:
-          - "*"
+    path: patch-canary.yaml
