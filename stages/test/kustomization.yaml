@@ -8,25 +8,23 @@ resources:
   - ../../base
   - gateway.yaml
 
+
 patches:
   
   - target:
       kind: Service
       name: gobg
     patch: |-
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: gobg
-      spec:
-        type: NodePort
-        ports:
-          - name: http       
+      - op: replace
+        path: /spec/ports
+        value:
+          - name: http 
             port: 8080
             targetPort: 8080
             nodePort: 30081 
+            protocol: TCP
 
- 
+
   - target:
       kind: Canary
       name: gobg
