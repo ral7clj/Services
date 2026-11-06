@@ -6,4 +6,5 @@
 - op: replace
   path: /spec/service/hosts
   value:
-    - "*"
+    - gobg
+    - gobg.gobg-test
