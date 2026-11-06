@@ -6,10 +6,10 @@ namespace: gobg-test
 resources:
   - ns.yaml
   - ../../base
-  - gateway.yaml
+  - gateway.yaml 
 
 patches:
-
+  
   - target:
       kind: Service
       name: gobg
@@ -19,9 +19,11 @@ patches:
       metadata:
         name: gobg
       spec:
+        type: NodePort
         ports:
-          - name: http 
+          - name: http       # Setăm numele portului explicitly pentru a ocoli eroarea K8s!
             port: 8080
+            targetPort: 8080
             nodePort: 30081
 
  
