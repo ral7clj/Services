@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - deploy.yaml
 - service.yaml
+- canary.yaml
 
 images:
 - name: ral7clj/gobg

@@ -4,11 +4,11 @@ kind: Kustomization
 namespace: gobg-test
 
 resources:
-- ns.yaml
-- ../../base
-- canary.yaml
-
+  - ns.yaml
+  - ../../base
+  - gateway.yaml 
 patches:
+  
   - target:
       kind: Service
       name: gobg
@@ -16,3 +16,18 @@ patches:
       - op: replace
         path: /spec/ports/0/nodePort
         value: 30081
+
+  
+  - target:
+      kind: Canary
+      name: gobg
+    patch: |-
+      - op: replace
+        path: /spec/service/gateways
+        value:
+          - gobg-gateway
+          - mesh
+      - op: replace
+        path: /spec/service/hosts
+        value:
+          - "*"
