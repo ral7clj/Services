@@ -4,21 +4,26 @@ metadata:
   name: gobg
   namespace: gobg-test
 spec:
-  
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: gobg
   
   service:
-    port: 8080
+    
+    port: 80
+    
     targetPort: 8080
+    
     gateways:
+      - gobg-gateway.gobg-test
       - mesh
-  
+    
+    hosts:
+      - "*"
+
   analysis:
     interval: 15s
-   
     threshold: 5
     maxWeight: 50
     stepWeight: 10
