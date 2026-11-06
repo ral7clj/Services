@@ -3,20 +3,22 @@ kind: Kustomization
 
 namespace: gobg-test
 
+commonAnnotations:
+  kustomize.toolkit.fluxcd.io/ssa: "Merge"
+  kustomize.toolkit.fluxcd.io/force: "enabled"
+
 resources:
   - ns.yaml
   - ../../base
   - gateway.yaml
 
 patchesJson6902:
-  
   - target:
       version: v1
       kind: Service
       name: gobg
     path: patch-service.yaml
 
-  
   - target:
       group: flagger.app
       version: v1beta1
