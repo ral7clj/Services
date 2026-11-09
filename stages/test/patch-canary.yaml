@@ -3,9 +3,23 @@
   value:
     - gobg-gateway
     - mesh
+
 - op: replace
   path: /spec/service/hosts
   value:
     - gobg
     - gobg.gobg-test
     - gobg.gobg-test.svc.cluster.local
+
+- op: add
+  path: /spec/analysis/webhooks
+  value:
+    - name: "promote-to-uat"
+      type: post-rollout
+      url: "http://kargo-relay.gobg-test.svc.cluster.local/promote-uat"
+      timeout: 15s
+
+    - name: "rollback-test-manifests"
+      type: rollback
+      url: "http://kargo-relay.gobg-test.svc.cluster.local/rollback-test"
+      timeout: 15s
