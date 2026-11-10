@@ -8,6 +8,6 @@ resources:
 
 images:
 - name: ral7clj/gobg
-  newTag: green
+  newTag: blue
 
 
