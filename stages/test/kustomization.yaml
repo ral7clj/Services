@@ -11,6 +11,7 @@ resources:
   - ns.yaml
   - ../../base
   - gateway.yaml
+  - canary.yaml
 
 patchesJson6902:
   - target:
