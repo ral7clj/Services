@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - deploy.yaml
 - service.yaml
+- loadtester.yaml
 
 images:
 - name: ral7clj/gobg
